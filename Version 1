@@ -1,0 +1,35 @@
+import discord
+import os
+
+intents = discord.Intents.default()
+intents.message_content = True
+
+client = discord.Client(intents=intents)
+
+def make_mention(_id) -> str:
+    return f"<@{_id}>"
+
+
+@client.event
+async def on_ready():
+  print('We have logged in as {0.user}' .format(client))
+
+  
+
+
+@client.event
+async def on_message(message):
+  if "Starpass" in message.context: #and message.channel.id == "1006653308229931008":
+     await message.channel.send(make_mention("528798127860350976"))
+     await message.channel.send("The starpass is now in")
+  elif "Strong Alien Soldier" in message.content:
+     await message.channel.send(make_mention("528798127860350976"))
+     await message.channel.send("An Alien Soldier is now in!")
+  elif "Goddess" in message.content:
+    await message.channel.send(make_mention("528798127860350976"))
+    #await message.channel.send(make_mention(""))
+    await message.channel.send("A goddess is now in!")
+
+
+
+client.run('TOKEN')
